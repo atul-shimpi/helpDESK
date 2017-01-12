@@ -1,0 +1,18 @@
+<page-title title="Ticket Categories"></page-title>
+<ul class="nav navbar-nav crud">
+  <li><a href="#">New</a></li>
+</ul>  
+
+<table class="table table-striped">      
+  <tr>
+     <th>Category</th>
+     <th style="width: 30px;"></th>
+     <th style="width: 30px;"></th>
+  </tr>   
+
+  <tr ng-repeat="category in categories track by $index">
+     <td>{{category.type_of_ticket}}</td>
+     <td><a href="#"><span class="fa fa-pencil-square-o" aria-hidden="true"></span></a></td>
+     <td><a href="#"><span class="fa fa-trash-o" aria-hidden="true"></span></a></td>
+  </tr>
+</table>

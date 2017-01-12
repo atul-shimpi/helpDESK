@@ -1,0 +1,107 @@
+<page-title title="Edit Ticket"></page-title>
+<div style="width: 100%;  height:60%; margin: 0 auto; margin-top: 10px;">
+<div ng-show="saveFailed" class = "alert alert-danger">Saving failed. {{err}}</div>
+  <br>
+  <form class="form-horizontal" ng-submit="onClickLoginBtn()" role="form">    
+    <!-- Ticket Type -->
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="type">Type</label>    
+      <div class="col-sm-4">
+        <select
+          class="form-control"
+          ng-model="ticketForm.ticket_type_id">
+          <option
+            ng-repeat="type in ticketTypes track by $index"
+            ng-value="{{type.id}}">
+            {{type.type_of_ticket}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Ticket Description -->
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="type">Description</label>
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control"
+          name="description"
+          id="description"
+          ng-model="ticketForm.description">
+      </div>
+    </div>  
+    
+    <!-- Assign to -->
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="type">Assign To</label>
+      <div class="col-sm-4">
+        <select
+          class="form-control"
+          ng-model="ticketForm.assignee_id">
+          <option
+            ng-repeat="user in assignees track by $index"
+            ng-value="{{user.id}}">
+            {{user.name}}
+          </option>
+        </select>
+      </div>
+    </div>  
+    
+    <!-- Status -->
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="type">Status</label>
+      <div class="col-sm-4">
+        <select
+          class="form-control"
+          ng-model="ticketForm.status">
+          <option
+            ng-repeat="status in status_mst track by $index"
+            ng-value="{{status.id}}">
+            {{status.status}}
+          </option>
+        </select>
+      </div>
+    </div>  
+    
+    <!-- comments -->
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="type">Comments</label>
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control"
+          name="comment"
+          id="comment"
+          ng-model="ticketForm.comment">
+      </div>
+    </div>  
+    
+    <!-- operations -->
+    <div class="form-group"> 
+      <div class="col-sm-offset-4 col-sm-4">
+        <!-- Save -->
+        <button
+          type="submit"
+          class="btn btn-success"
+          ng-click="onClickUpdateBtn()"
+          style="width: 80px !important;">
+          Update
+          <span ng-show="savingInProgress">
+            <i class="fa fa-spinner fa-spin"></i>
+          </span>
+        </button>
+        
+        <!-- Cancel -->
+        <button
+          ng-click="onClickBackBtn()"
+          type="submit"
+          class="btn btn-default"
+          style="width: 80px !important;">
+          Cancel
+        </button>
+      </div>
+    </div>
+    
+  </form>
+</div>

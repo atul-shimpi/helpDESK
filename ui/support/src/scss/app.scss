@@ -1,0 +1,20 @@
+@import "../../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "../../node_modules/font-awesome/css/font-awesome.css";
+@import "./constants.scss";
+@import "../views/index.scss";
+
+body {
+  overflow-x:hidden;
+}
+* {
+   margin: 0px;
+}
+
+ul.nav a:hover { 
+  background-color: RGB(92, 184, 92) !important; 
+}
+
+ul.crud a:hover {
+  background-color: white !important;
+  color: grey;
+}

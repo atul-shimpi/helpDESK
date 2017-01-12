@@ -1,0 +1,24 @@
+<page-title title="Users"></page-title>
+<ul class="nav navbar-nav crud">
+  <li><a href="#">New</a></li>  
+</ul>  
+
+<table class="table table-striped">      
+  <tr>
+     <th>Name</th>
+     <th>Email</th>
+     <th>Role</th>
+     <th>Create On</th>
+     <th style="width: 30px;"></th>
+     <th style="width: 30px;"></th>
+  </tr>   
+
+  <tr ng-repeat="user in users track by $index">
+     <td>{{user.name}}</td>
+     <td>{{user.email}}</td>
+     <td>{{user.role}}</td>
+     <td>{{user.created_at | date:'dd-MMM-yyyy, H:mm'}}</td>
+     <td><a href="#"><span class="fa fa-pencil-square-o" aria-hidden="true"></span></a></td>
+     <td><a href="#"><span class="fa fa-trash-o" aria-hidden="true"></span></a></td>
+  </tr>
+</table>
