@@ -45,6 +45,7 @@ GEM
     bcrypt (3.1.11-x64-mingw32)
     builder (3.2.2)
     concurrent-ruby (1.0.3)
+    database_cleaner (1.5.3)
     devise (4.2.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -160,6 +161,7 @@ DEPENDENCIES
   ZenTest
   autotest-rails
   byebug
+  database_cleaner
   devise
   devise_token_auth
   factory_girl_rails
