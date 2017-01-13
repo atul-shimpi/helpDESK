@@ -12,8 +12,20 @@ RSpec.describe('Sessions Management', type: :request) do
     expect(response.response_code).to eq(200)  
   end 
   
-  it 'signs in a existing user' do
+  it 'signs in an existing user' do
     sign_in
     expect(response.response_code).to eq(200)  
+  end 
+  
+  it 'signs out a signed in user' do
+    sign_out
+    expect(response.response_code).to eq(200)  
+  end 
+  
+  it 'unregisters a user having role of customer' do
+    sign_in
+    unregister_customer
+    
+    expect(response.response_code).to eq(200)
   end 
 end
