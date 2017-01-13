@@ -28,6 +28,9 @@ gem "ZenTest"
 gem "autotest-rails"
 gem 'rspec-autotest'
 
+gem 'prawn'
+gem 'prawn-table'
+
 gem 'devise_token_auth'
 gem 'omniauth'
 gem 'sqlite3'

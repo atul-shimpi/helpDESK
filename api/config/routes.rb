@@ -7,7 +7,9 @@ Rails.application.routes.draw do
       get 'asignees' => 'users#asigneens'
       get '/master/tickets/status' => 'tickets_status_master#index'
       
-      resources :ticket_types, :tickets
+      resources :ticket_types,
+        :tickets,
+        :defaults => { :format => 'json' }
     end
   end 
   

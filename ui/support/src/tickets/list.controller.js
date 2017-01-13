@@ -4,6 +4,8 @@ function ListTicketsController(
   $scope,
   $state,
   $http,
+  $window,
+  API,
   $log) {
   'ngInject';  
   initialize(); 
@@ -15,6 +17,31 @@ function ListTicketsController(
     loadDurationUnits();
     loadStatusMst();    
     loadTickets();
+  }
+  
+  // click download button
+  $scope.onClickDownloadBtn = function() {
+    $window.open(API.TICKETS_URL + ".pdf?" +  filterParamsInStr(), "_blank");
+  };
+  
+  function filterParams() {  
+    var query_params = {};
+    
+    query_params.duration = $scope.filter.duration_value + $scope.filter.duration_unit;
+    query_params.status = $scope.filter.status; 
+    
+    return query_params;
+  }
+  
+  function filterParamsInStr() {
+    if ($scope.filter.status == undefined) return;
+      
+    var query_params;
+    
+    query_params = "duration=" + $scope.filter.duration_value + $scope.filter.duration_unit;
+    query_params += "&status=" + $scope.filter.status; 
+    
+    return query_params;
   }
   
   // apply filter button
@@ -36,14 +63,9 @@ function ListTicketsController(
     }
     
     // get data for above filters
-    $scope.loading = true;    
+    $scope.loading = true;       
     
-    var query_params = {};
-    
-    query_params.duration = $scope.filter.duration_value + $scope.filter.duration_unit;
-    query_params.status = $scope.filter.status;    
-    
-    TicketsService.query(query_params,
+    TicketsService.query(filterParams(),
       function (data) { //got tickets
         data.sort(function(a,b) { // order by creation date in descending    
           return new Date(a.created_at) < new Date(b.created_at) ? 1 : -1;

@@ -1,3 +1,5 @@
+require 'tickets_pdf'
+
 module Api
   module V1
     class TicketsController < ApplicationController
@@ -26,7 +28,20 @@ module Api
           tickets = tickets.where(status: params[:status])  
         end  
         
-        render :json => tickets, :except => exclude_self_attrs, include: include_asso_attrs
+        
+        respond_to do |format|
+          format.json { 
+            render :json => tickets,
+            :except => exclude_self_attrs,
+            include: include_asso_attrs 
+          }
+            
+          format.pdf { 
+            pdf = TicketsPdf.new(tickets, 'helpDESK')
+            send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: 'inline'
+          }
+        end
+        
       end
 
       # GET /tickets/1
