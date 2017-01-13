@@ -4,6 +4,72 @@
   <li><a href="#">Download</a></li>
 </ul>  
 
+<!-- filter controls -->
+<form class="navbar-form navbar-left">
+  <div class="form-group">
+    <!-- status list -->
+    <select
+      class="form-control"
+      ng-model="filter.status">
+      <option
+        ng-repeat="status in status_mst track by $index"
+        ng-value="{{status.id}}">
+        {{status.status}}
+      </option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label>For last</label>
+    
+    <!-- duration value -->
+    <select
+      class="form-control"
+      ng-model="filter.duration_value">
+      <option
+        ng-repeat="duration_value in duration_values track by $index"
+        ng-value="{{duration_value}}">
+        {{duration_value}}
+      </option>
+    </select>
+    
+    <!-- duration unit -->
+    <select
+      class="form-control"
+      ng-model="filter.duration_unit">
+      <option
+        ng-repeat="duration_unit in duration_units track by $index"
+        value="{{duration_unit.id}}">
+        {{duration_unit.unit}}
+      </option>
+    </select>
+  </div>
+  
+  
+  <!-- apply filter button -->
+  <button
+    ng-click="onClickApplyFilterBtn()"
+    type="submit"
+    style="width: 80px;"
+    class="btn btn-default">Filter
+    <span ng-show="loading">
+      <i class="fa fa-spinner fa-spin"></i>
+    </span>
+  </button>
+  
+  <!-- reset button -->
+  <button
+    ng-click="onClickResetBtn()"
+    type="submit"
+    style="width: 80px;"
+    class="btn btn-default">Reset
+    <span ng-show="resetInProgress">
+      <i class="fa fa-spinner fa-spin"></i>
+    </span>
+  </button>
+</form>
+ 
+<!-- tickets list  -->
 <table class="table table-striped">      
   <tr>
      <th>Id</th>

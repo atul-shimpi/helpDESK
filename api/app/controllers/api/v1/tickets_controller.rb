@@ -9,8 +9,23 @@ module Api
         include_asso_attrs = [ { :ticket_type => {:only => [:id, :type_of_ticket]} },
                                { :owner => {:only => [:id, :name]} },
                                { :assignee => {:only => [:id, :name]} } ]
+        # get all 
+        tickets = Ticket.all
         
-        tickets = current_user.admin? ? Ticket.all : Ticket.where(owner_id: current_user.id)        
+        # if duration is given then filer by duration example  1months
+        if (params.has_key?(:duration))
+          duration_value = params[:duration].scan(/\d+/).first.to_i
+          duration_unit = params[:duration].gsub(/[^a-zA-Z]/, '')
+          
+          tickets = tickets.where("created_at >= ?", Date.today - duration_value.send(duration_unit))  
+        end  
+        
+        # if status is given filter by status
+        if (params.has_key?(:status))
+          puts params[:status]
+          tickets = tickets.where(status: params[:status])  
+        end  
+        
         render :json => tickets, :except => exclude_self_attrs, include: include_asso_attrs
       end
 
@@ -60,7 +75,9 @@ module Api
               :ticket_type_id,
               :description,
               :status,
-              :comment
+              :comment,
+              :duration,
+              :unit
             )
         end
     end

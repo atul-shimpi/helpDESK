@@ -97,5 +97,21 @@ Ticket.create([
     ticket_type_id: 5,
     description: 'Replace hard disk of 500 gb',
     status: 2
-  }
+  },
+  { 
+    owner_id: 2,
+    assignee_id: 2,
+    ticket_type_id: 5,
+    description: 'Increase memoty',
+    status: 2
+  },
+  { 
+    owner_id: 4,
+    assignee_id: 2,
+    ticket_type_id: 3,
+    description: 'Need to Configure Lotus Notes'
+  },
 ]);
+
+Ticket.where(id: 5).update(created_at: Date.today - 45.days)
+Ticket.where(id: 6).update(created_at: Date.today - 33.days)

@@ -18,3 +18,14 @@ ul.crud a:hover {
   background-color: white !important;
   color: grey;
 }
+
+td {
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+label {
+    font-weight: normal;
+}
