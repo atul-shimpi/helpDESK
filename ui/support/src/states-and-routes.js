@@ -10,7 +10,7 @@ export default function routeConfig($stateProvider,
   $stateProvider
     .state('login', {
         url: '/',
-        templateUrl: 'src/views/login/login.html',
+        templateUrl: 'src/login/views/login.html',
 		    controller: 'LoginController'
     })
     .state('register', {
