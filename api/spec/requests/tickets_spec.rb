@@ -5,7 +5,7 @@ RSpec.configure do |c|
   c.include RequestHelpers::SessoionHelpers
 end
 
-RSpec.describe "Tickets CRUD", type: :request do
+RSpec.describe "Tickets Management", type: :request do
   before(:all) do
     sign_up
     sign_in
