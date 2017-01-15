@@ -2,7 +2,7 @@ require 'rails_helper'
 require_relative './helpers'
 
 RSpec.configure do |c|
-  c.include RequestHelpers::SessoionHelpers
+  c.include RequestHelpers::SessionHelpers
 end
 
 RSpec.describe('Sessions Management', type: :request) do

@@ -1,5 +1,5 @@
 module RequestHelpers
-  module SessoionHelpers
+  module SessionHelpers
     def sign_in_request_headers
       headers = { 
         'HTTP_ACCEPT': 'application/json',
