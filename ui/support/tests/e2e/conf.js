@@ -1,4 +1,5 @@
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['session.js']
+  specs: ['session.js'],
+  baseUrl: 'http://localhost:3001/#!/'
 };

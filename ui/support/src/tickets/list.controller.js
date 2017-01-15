@@ -5,6 +5,7 @@ function ListTicketsController(
   $state,
   $http,
   $window,
+  $sce,
   API,
   $log) {
   'ngInject';  
@@ -20,8 +21,15 @@ function ListTicketsController(
   }
   
   // click download button
-  $scope.onClickDownloadBtn = function() {
-    $window.open(API.TICKETS_URL + ".pdf?" +  filterParamsInStr(), "_blank");
+  $scope.onClickExportBtn = function() {
+    $http.get(API.TICKETS_URL + ".pdf?" +  filterParamsInStr())
+      .then(function(data) {   
+        var file = new Blob([data.data], {type: 'application/pdf'});
+        $window.open(URL.createObjectURL(file), "_blank");
+      },
+      function(err){
+        alert(err);
+      });   
   };
   
   function filterParams() {  

@@ -1,10 +1,22 @@
 require 'rails_helper'
+require_relative './helpers'
 
-RSpec.describe "Tickets", type: :request do
-  describe "GET /tickets" do
-    it "works! (now write some real specs)" do
-      get tickets_path
-      expect(response).to have_http_status(200)
-    end
+RSpec.configure do |c|
+  c.include RequestHelpers::SessoionHelpers
+end
+
+RSpec.describe "Tickets CRUD", type: :request do
+  before(:all) do
+    sign_up
+    sign_in
   end
+    
+  it "creates a new ticket" do    
+    ticket = '{"ticket": {"assignee_id": 3, "ticket_type_id": 7, "description": "Need to download Rubymine"}}'
+    
+    post(api_v1_tickets_path, :params => ticket, headers: auth_headers)
+    
+    expect(response).to have_http_status(:created)             
+	end
+	
 end

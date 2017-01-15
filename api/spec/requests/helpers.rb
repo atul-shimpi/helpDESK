@@ -14,11 +14,17 @@ module RequestHelpers
       post(user_session_path, sign_up_request_body, headers: sign_up_request_headers)
       
       @@auth_headers = {}         
-        
+      
+      @@auth_headers['HTTP_ACCEPT'] = 'application/json'
+      @@auth_headers['CONTENT_TYPE'] = 'application/json'
       @@auth_headers['token-type'] = response.headers['token-type']
       @@auth_headers['access-token'] = response.headers['access-token']
       @@auth_headers['client'] = response.headers['client']
       @@auth_headers['uid'] = response.headers['uid']        
+    end
+    
+    def auth_headers
+      @@auth_headers
     end
     
     def sign_out          

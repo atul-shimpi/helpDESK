@@ -1,7 +1,7 @@
 <page-title title="Tickets"></page-title>
 <ul class="nav navbar-nav crud">
   <li><a ui-sref="new-ticket">New</a></li>
-  <li><a style="cursor:pointer;" ng-click="onClickDownloadBtn()">Download</a></li>
+  <li><a style="cursor:pointer;" ng-click="onClickExportBtn()">Export to Pdf</a></li>
 </ul>  
 
 <!-- filter controls -->
@@ -68,7 +68,7 @@
     </span>
   </button>
 </form>
- 
+ <object ng-show="content" data="{{content}}" type="application/pdf" style="width: 100%; height: 400px;"></object>
 <!-- tickets list  -->
 <table class="table table-striped">      
   <tr>

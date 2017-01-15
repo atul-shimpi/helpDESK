@@ -10,38 +10,20 @@ module Api
         exclude_self_attrs = [:owner_id, :assignee_id, :ticket_type_id, :status]
         include_asso_attrs = [ { :ticket_type => {:only => [:id, :type_of_ticket]} },
                                { :owner => {:only => [:id, :name]} },
-                               { :assignee => {:only => [:id, :name]} } ]
-        # get all 
-        tickets = Ticket.all
-        
-        # if duration is given then filer by duration example  1months
-        if (params.has_key?(:duration))
-          duration_value = params[:duration].scan(/\d+/).first.to_i
-          duration_unit = params[:duration].gsub(/[^a-zA-Z]/, '')
-          
-          tickets = tickets.where("created_at >= ?", Date.today - duration_value.send(duration_unit))  
-        end  
-        
-        # if status is given filter by status
-        if (params.has_key?(:status))
-          puts params[:status]
-          tickets = tickets.where(status: params[:status])  
-        end  
-        
-        
+                               { :assignee => {:only => [:id, :name]} } ]        
+       
         respond_to do |format|
           format.json { 
-            render :json => tickets,
+            render :json => find_tickets,
             :except => exclude_self_attrs,
             include: include_asso_attrs 
           }
             
           format.pdf { 
-            pdf = TicketsPdf.new(tickets, 'helpDESK')
-            send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: 'inline'
+            pdf = TicketsPdf.new(find_tickets, 'helpDESK')
+            send_data pdf.render.force_encoding('BINARY'), filename: 'report.pdf', type: 'application/pdf', :disposition => "inline"
           }
-        end
-        
+        end        
       end
 
       # GET /tickets/1
@@ -50,9 +32,10 @@ module Api
       end
 
       # POST /tickets
-      def create
+      def create      
         params_ = ticket_params
         params_[:owner_id] = current_user.id
+      
         @ticket = Ticket.new(params_)
         
         if @ticket.save
@@ -77,6 +60,34 @@ module Api
       end
 
       private
+        # return tickets accoding to logged in user and filter passed
+        def find_tickets
+          # get all 
+          tickets = Ticket.all
+        
+          # Get tickets created by logged in user or assigned to him if he is not admin
+          #if not current_user.admin?
+          #puts 'adminnnnnn'
+          #tickets = tickets.where("owner_id = ? or assignee_id = ?", current_user.id, current_user.id)  
+          #end
+          
+          # if duration is given then filer by duration, example  1months
+          if (params.has_key?(:duration))
+            duration_value = params[:duration].scan(/\d+/).first.to_i
+            duration_unit = params[:duration].gsub(/[^a-zA-Z]/, '')
+            
+            tickets = tickets.where("created_at >= ?", Date.today - duration_value.send(duration_unit))  
+          end  
+          
+          # if status is given filter by status
+          if (params.has_key?(:status))
+            puts params[:status]
+            tickets = tickets.where(status: params[:status])  
+          end
+          
+          tickets    
+        end
+        
         # Use callbacks to share common setup or constraints between actions.
         def set_ticket
           @ticket = Ticket.find(params[:id])

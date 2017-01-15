@@ -17,17 +17,21 @@ describe('Login', function() {
   it('should login with valid credentials', function() {   
     browser.driver;
     
-    browser.driver.get('http://localhost:3001/');
+    browser.driver.get(browser.baseUrl);
     
-    browser.driver.findElement(By.id("email")).clear();
-    browser.driver.findElement(By.id("email")).sendKeys("jeniffer@hotmail.com");
+    element(by.id("email")).clear()
+    element(By.id("email")).sendKeys("jeniffer@hotmail.com");
     
-    browser.driver.findElement(By.id("password")).clear();
-    browser.driver.findElement(By.id("password")).sendKeys("jeni@1601");
+    element(By.id("password")).clear();
+    element(By.id("password")).sendKeys("jeni@1601");
     
-    browser.driver.findElement(By.id("login")).click();
+    element(By.id("login")).click();
     
-    browser.driver.sleep(10000);
-    expect(true).toEqual(true);    
+    browser.driver.sleep(3000);
+    expect(browser.getCurrentUrl()).toEqual(browser.baseUrl + "tickets");    
+    
+    element(By.id("account-menu")).click();
+    element(By.id("logout")).click();
+    expect(browser.getCurrentUrl()).toEqual(browser.baseUrl);
   });
 });
