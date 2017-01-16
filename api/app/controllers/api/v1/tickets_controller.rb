@@ -89,8 +89,7 @@ module Api
             duration_value = params[:duration].scan(/\d+/).first.to_i
             duration_unit = params[:duration].gsub(/[^a-zA-Z]/, '')
             
-            puts Date.today - duration_value.send(duration_unit)
-            tickets = tickets.where("created_at >= ?", Date.today - duration_value.send(duration_unit))  
+            tickets = tickets.where("updated_at >= ?", Date.today - duration_value.send(duration_unit))  
           end  
           
           # if status is given filter by status

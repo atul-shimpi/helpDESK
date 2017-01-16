@@ -92,6 +92,8 @@ function NewTicketController(
     $scope.err = ''
     $scope.savingInProgress = true
     
+    //remove this
+    $scope.ticketForm.assignee_id = 1 //1 = admin
     TicketsService.save({ticket: $scope.ticketForm},
       function(data) {
         $scope.saveFailed = false;

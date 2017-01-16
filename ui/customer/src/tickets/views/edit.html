@@ -31,23 +31,7 @@
           ng-model="ticketForm.description">
       </div>
     </div>  
-    
-    <!-- Assign to -->
-    <div class="form-group">
-      <label class="control-label col-sm-4" for="type">Assign To</label>
-      <div class="col-sm-4">
-        <select
-          class="form-control"
-          ng-model="ticketForm.assignee_id">
-          <option
-            ng-repeat="user in assignees track by $index"
-            ng-value="{{user.id}}">
-            {{user.name}}
-          </option>
-        </select>
-      </div>
-    </div>  
-    
+      
     <!-- Status -->
     <div class="form-group">
       <label class="control-label col-sm-4" for="type">Status</label>
