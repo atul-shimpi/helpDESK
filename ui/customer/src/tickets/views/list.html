@@ -1,0 +1,117 @@
+<page-title title="Tickets"></page-title>
+<ul class="nav navbar-nav crud">
+  <li><a id="new-ticket" ui-sref="new-ticket">New</a></li>
+  <li><a style="cursor:pointer;" ng-click="onClickExportBtn()">Export to Pdf</a></li>
+</ul>  
+
+<!-- filter controls -->
+<form class="navbar-form navbar-left">
+  <div class="form-group">
+    <!-- status list -->
+    <select
+      class="form-control"
+      ng-model="filter.status">
+      <option
+        ng-repeat="status in status_mst track by $index"
+        ng-value="{{status.id}}">
+        {{status.status}}
+      </option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label>For last</label>
+    
+    <!-- duration value -->
+    <select
+      class="form-control"
+      ng-model="filter.duration_value">
+      <option
+        ng-repeat="duration_value in duration_values track by $index"
+        ng-value="{{duration_value}}">
+        {{duration_value}}
+      </option>
+    </select>
+    
+    <!-- duration unit -->
+    <select
+      class="form-control"
+      ng-model="filter.duration_unit">
+      <option
+        ng-repeat="duration_unit in duration_units track by $index"
+        value="{{duration_unit.id}}">
+        {{duration_unit.unit}}
+      </option>
+    </select>
+  </div>
+  
+  
+  <!-- apply filter button -->
+  <button
+    ng-click="onClickApplyFilterBtn()"
+    type="submit"
+    style="width: 80px;"
+    class="btn btn-default">Filter
+    <span ng-show="loading">
+      <i class="fa fa-spinner fa-spin"></i>
+    </span>
+  </button>
+  
+  <!-- reset button -->
+  <button
+    ng-click="onClickResetBtn()"
+    type="submit"
+    style="width: 80px;"
+    class="btn btn-default">Reset
+    <span ng-show="resetInProgress">
+      <i class="fa fa-spinner fa-spin"></i>
+    </span>
+  </button>
+</form>
+ <object ng-show="content" data="{{content}}" type="application/pdf" style="width: 100%; height: 400px;"></object>
+<!-- tickets list  -->
+<table id="tickets" class="table table-striped">      
+  <tr>
+     <th>Id</th>
+     <th>Created On</th>
+     <th>Creator</th>
+     <th>Category</th>
+     <th>Description</th>     
+     <th>Assign To</th>     
+     <th>Status</th>
+     <th>Closed On</th>
+     <th>Comment</th>
+     <th style="width: 30px;"></th>
+     <th style="width: 30px;"></th>
+  </tr>   
+  <tr ng-repeat="ticket in tickets track by $index">
+     <td>{{ticket.id}}</td> 
+     <td>{{ticket.created_at | date:'dd-MMM-yyyy, H:mm'}}</td>
+     <td>{{ticket.owner.name}}</td>
+     <td>{{ticket.ticket_type.type_of_ticket}}</td>
+     <td>{{ticket.description}}</td>     
+     <td>{{ticket.assignee.name}}</td>     
+     <td>{{ticket.status_}}</td>
+     <td>{{ticket.closed_at | date:'dd-MMM-yyyy, H:mm'}}</td>  
+     <td>{{ticket.comment}}</td>     
+     <td><a 
+          id="edit-{{ticket.id}}"
+          ui-sref="edit-ticket({id: {{ticket.id}}})">
+          <span
+            class="fa fa-pencil-square-o"
+            aria-hidden="true">
+            </span>
+          </a>
+     </td>
+     <td>
+        <a 
+          id="delete-{{ticket.id}}"
+          style="cursor:pointer;"
+          ng-click="onClickDelete(ticket.id)">
+          <span class="fa fa-trash-o"
+            aria-hidden="true">
+          </span>
+        </a>
+      </td>
+  </tr>
+</table>

@@ -23,6 +23,7 @@ app.constant("API", {
   "SERVER_URL": SERVER,
   "TICKET_TYPES_URL": SERVER + VER + "/ticket_types",
   "USERS_URL": SERVER + VER + "/users",
+  "AUTH_URL": SERVER + VER + "/auth",
   "ASSIGNEES_URL": SERVER + VER + "/asignees",
   "TICKETS_URL": SERVER + VER + "/tickets",
   "TICKETS_STATUS_MST_URL": SERVER + VER + "/master/tickets/status",

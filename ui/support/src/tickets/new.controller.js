@@ -20,8 +20,7 @@ function NewTicketController(
     $scope.ticketForm = {};
     
     // load ticket types
-    TicketTypesService.getAll()
-     .then(
+    TicketTypesService.query(
        function (data) {        
          $scope.ticketTypes = data;  
        }, 

@@ -11,7 +11,7 @@ function UsersService($resource, $q, $filter, API) {
         function(data) { //success
           return data;
         },
-        function(data) { //failure
+        function(data) { //failure        
           return $q.reject(data);
         }
       );

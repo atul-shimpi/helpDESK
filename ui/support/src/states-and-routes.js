@@ -20,8 +20,13 @@ export default function routeConfig($stateProvider,
     })
     .state('users', {
         url: '/users',
-        templateUrl: 'src/views/users/CRUD.html',
-		    controller: 'UsersController'
+        templateUrl: 'src/users/views/list.html',
+		    controller: 'UsersListController'
+    })
+    .state('new-user', {
+        url: '/users/new',
+        templateUrl: 'src/users/views/new-and-edit.html',
+		    controller: 'NewUserController'
     })
     .state('profile', {
         url: '/profile',
@@ -30,8 +35,8 @@ export default function routeConfig($stateProvider,
     })
     .state('ticketTypes', {
         url: '/ticket/types',
-        templateUrl: 'src/views/ticketTypes/CRUD.html',
-		    controller: 'TicketTypesController'
+        templateUrl: 'src/ticketTypes/views/list.html',
+		    controller: 'TicketTypesListController'
     })
     .state('tickets', {
         url: '/tickets',
@@ -47,6 +52,16 @@ export default function routeConfig($stateProvider,
         url: '/tickets/:id/edit',
         templateUrl: 'src/tickets/views/edit.html',
 		    controller: 'NewTicketController'
+    })
+    .state('new-ticket-type', {
+        url: '/ticket-type/new',
+        templateUrl: 'src/ticketTypes/views/new-and-edit.html',
+		    controller: 'NewTicketTypeController'
+    })
+    .state('edit-ticket-type', {
+        url: '/ticket-type/:id/edit',
+        templateUrl: 'src/ticketTypes/views/new-and-edit.html',
+		    controller: 'NewTicketTypeController'
     });
       
   // configure Angular token auth  

@@ -1,7 +1,9 @@
 import {TicketTypesService} from './service';
-import {TicketTypesController} from './ticketsTypes.controller';
+import {TicketTypesListController} from './list.controller';
+import {NewTicketTypeController} from './new.controller'
 
 export default angular.module('ticketsTypesController', [])
   .service('TicketTypesService', TicketTypesService)
-  .controller('TicketTypesController', TicketTypesController)  
+  .controller('TicketTypesListController', TicketTypesListController) 
+  .controller('NewTicketTypeController', NewTicketTypeController)  
 ;

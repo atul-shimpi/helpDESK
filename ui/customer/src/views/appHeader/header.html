@@ -1,0 +1,29 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-brand"
+        style="font-size: 24px;color: RGB(2,197,76);">
+          help<span style="color: darkmagenta">DESK</span>
+      </span>
+    </div>
+    
+    <ul class="nav navbar-nav" ng-show="user.signedIn">
+      <li ng-classx="{active: isTickets}"><a ui-sref="tickets">Tickets</a></li>
+    </ul>
+    
+    <ul class="nav navbar-nav navbar-right" ng-show="user.signedIn">
+      <li class="dropdown">      
+        <a id="account-menu" class="dropdown-toggle" data-toggle="dropdown" href="">
+          {{user.name}}
+         <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a ui-sref="profile">Edit Profile</a></li>
+          <li><a id="unregister" href="" ng-click="clickUnregisterBtn()">Unregister</a></li>
+          <li><a ui-sref="profile">Reset Password</a></li>
+          <li class="divider"></li>
+          <li><a id="logout" href="" ng-click="onClickLogoutBtn()">Sign Out</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

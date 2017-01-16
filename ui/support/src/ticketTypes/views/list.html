@@ -1,0 +1,38 @@
+<page-title title="Ticket Categories"></page-title>
+<ul class="nav navbar-nav crud">
+  <li><a id="new-ticket-type" ui-sref="new-ticket-type">New</a></li>
+</ul>  
+
+<table class="table table-striped">      
+  <tr>
+     <th>Category</th>
+     <th style="width: 30px;"></th>
+     <th style="width: 30px;"></th>
+  </tr>   
+
+  <tr ng-repeat="category in categories track by $index">
+     <td>{{category.type_of_ticket}}</td>
+     <!-- edit -->
+     <td><a 
+          id="edit-{{category.id}}"
+          ui-sref="edit-ticket-type({id: {{category.id}}})">
+          <span
+            class="fa fa-pencil-square-o"
+            aria-hidden="true">
+            </span>
+          </a>
+     </td>
+     
+     <!-- delete -->
+     <td>
+        <a 
+          id="delete-{{category.id}}"
+          style="cursor:pointer;"
+          ng-click="onClickDelete(category.id)">
+          <span class="fa fa-trash-o"
+            aria-hidden="true">
+          </span>
+        </a>
+      </td>
+  </tr>
+</table>

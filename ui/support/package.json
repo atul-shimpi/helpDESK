@@ -1,7 +1,7 @@
 {
-  "name": "builds.com",
+  "name": "helpDESK.com",
   "version": "1.0.0",
-  "description": "Builds dashboard application",
+  "description": "Ticket Management Application",
   "main": "src/js/app.js",
   "scripts": {    
     "test": "node ./node_modules/protractor/bin/protractor ./tests/e2e/conf.js",    

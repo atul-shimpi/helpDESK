@@ -1,0 +1,47 @@
+<page-title title="Edit Profile"></page-title>
+<div style="width: 40%; display:table; height:80%; margin: 0 auto; margin-top: 10px;">
+  <div style="display:table-cell; vertical-align:middle;">
+  <div ng-show="editProfileSuccessfully" class = "alert alert-success">Profile Updated successfully.</div>
+  <div ng-show="editProfileFailed" class = "alert alert-danger">Updation Failed. {{editProfileErr}}</div>
+    <form class="form-horizontal" ng-submit="onClickUpdateBtn()" role="form">
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="name">Fullname :</label>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="name"
+            ng-model="profileForm.name"
+            required="required"
+            placeholder="Enter your name">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="email">Email:</label>
+        <div class="col-sm-6">
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            ng-model="profileForm.email"
+            required="required"
+            placeholder="Enter email">
+        </div>
+      </div>
+           
+      <div class="form-group"> 
+        <div class="col-sm-offset-3 col-sm-10">
+          <button type="submit" class="btn btn-success" style="width: 100px !important;">            
+            Update
+            <span ng-show="profileUpdationInProgress">
+              <i class="fa fa-spinner fa-spin"></i>
+            </span>
+          </button>
+        </div>        
+      </div>      
+    </form>
+  </div>
+</div>

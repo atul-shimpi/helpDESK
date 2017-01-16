@@ -1,0 +1,12 @@
+.app-title {   
+  &_image{
+	background-color: $HEADER_BG_COLOR;
+  }
+  
+  &_slogan{    
+    color: grey;
+	font-size: 14px;
+	background-color: $HEADER_BG_COLOR;
+  }
+}
+
