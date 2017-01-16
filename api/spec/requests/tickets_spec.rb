@@ -46,10 +46,11 @@ RSpec.describe "Tickets Management", type: :request do
     get(api_v1_tickets_path + "/#{id}", headers: auth_headers)    
     expect(response).to have_http_status(:success) 
     
-    response_body = JSON.parse(response.body)  
-    ticket[:ticket].keys.each do |key|
-      expect(response_body[key.to_s]).to  eq(ticket[:ticket][key])
-    end
+    response_body = JSON.parse(response.body) 
+   
+    expect(response_body['assignee']['id']).to  eq(ticket[:ticket][:assignee_id])
+    expect(response_body['description']).to  eq(ticket[:ticket][:description])
+    expect(response_body['comment']).to  eq(ticket[:ticket][:comment])
 	end
   
   it "Updates a ticket" do  
@@ -76,6 +77,7 @@ RSpec.describe "Tickets Management", type: :request do
     expect(response).to have_http_status(:success)
     
     response_body = JSON.parse(response.body)  
+   
     ticket_[:ticket].keys.each do |key|
       expect(response_body[key.to_s]).to  eq(ticket_[:ticket][key])
     end
