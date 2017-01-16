@@ -24,6 +24,7 @@
       <label class="control-label col-sm-4" for="type">Description</label>
       <div class="col-sm-4">
         <input
+          id="description"
           type="text"
           class="form-control"
           name="description"
@@ -37,6 +38,7 @@
       <label class="control-label col-sm-4" for="type">Assign To</label>
       <div class="col-sm-4">
         <select
+          id="assignees"
           class="form-control"
           ng-model="ticketForm.assignee_id">
           <option
@@ -53,6 +55,7 @@
       <div class="col-sm-offset-4 col-sm-4">
         <!-- Save -->
         <button
+          id="save"
           type="submit"
           class="btn btn-success"
           ng-click="onClickSaveBtn()"

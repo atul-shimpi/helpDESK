@@ -1,6 +1,6 @@
 <page-title title="Tickets"></page-title>
 <ul class="nav navbar-nav crud">
-  <li><a ui-sref="new-ticket">New</a></li>
+  <li><a id="new-ticket" ui-sref="new-ticket">New</a></li>
   <li><a style="cursor:pointer;" ng-click="onClickExportBtn()">Export to Pdf</a></li>
 </ul>  
 
@@ -71,7 +71,6 @@
  <object ng-show="content" data="{{content}}" type="application/pdf" style="width: 100%; height: 400px;"></object>
 <!-- tickets list  -->
 <table id="tickets" class="table table-striped">      
-  <thead>
   <tr>
      <th>Id</th>
      <th>Created On</th>
@@ -85,7 +84,6 @@
      <th style="width: 30px;"></th>
      <th style="width: 30px;"></th>
   </tr>   
-  </thead>
   <tr ng-repeat="ticket in tickets track by $index">
      <td>{{ticket.id}}</td> 
      <td>{{ticket.created_at | date:'dd-MMM-yyyy, H:mm'}}</td>
@@ -96,7 +94,24 @@
      <td>{{ticket.status_}}</td>
      <td>{{ticket.closed_at | date:'dd-MMM-yyyy, H:mm'}}</td>  
      <td>{{ticket.comment}}</td>     
-     <td><a ui-sref="edit-ticket({id: {{ticket.id}}})"><span class="fa fa-pencil-square-o" aria-hidden="true"></span></a></td>
-     <td><a href="#"><span class="fa fa-trash-o" aria-hidden="true"></span></a></td>
+     <td><a 
+          id="edit-{{ticket.id}}"
+          ui-sref="edit-ticket({id: {{ticket.id}}})">
+          <span
+            class="fa fa-pencil-square-o"
+            aria-hidden="true">
+            </span>
+          </a>
+     </td>
+     <td>
+        <a 
+          id="delete-{{ticket.id}}"
+          style="cursor:pointer;"
+          ng-click="onClickDelete(ticket.id)">
+          <span class="fa fa-trash-o"
+            aria-hidden="true">
+          </span>
+        </a>
+      </td>
   </tr>
 </table>

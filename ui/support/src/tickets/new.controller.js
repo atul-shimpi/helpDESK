@@ -103,7 +103,7 @@ function NewTicketController(
         $scope.saveFailed = true;
         $scope.savingInProgress = false;
         $scope.err = err.data;
-    })      
+    });      
   };
   
   // user clicked on Update button

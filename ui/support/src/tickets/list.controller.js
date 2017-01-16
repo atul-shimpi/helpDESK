@@ -20,6 +20,23 @@ function ListTicketsController(
     loadTickets();
   }
   
+  // delete ticket
+  $scope.onClickDelete = function(id) {
+    if (confirm("Do you want to delete this ticket " + id + "?")) {
+    TicketsService.delete({id: id},
+      function(data) {
+        $scope.tickets.forEach(function(item, index, object) {
+          if (item.id === id) {
+            object.splice(index, 1);
+          }
+        });
+      },
+      function(err) {
+        alert(err);
+    });  
+    }
+  };
+  
   // click download button
   $scope.onClickExportBtn = function() {
     $http.get(API.TICKETS_URL + ".pdf?" +  filterParamsInStr())

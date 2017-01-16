@@ -5,7 +5,7 @@ browser.driver.controlFlow().execute = function() {
 
   // queue 100ms wait
   origFn.call(browser.driver.controlFlow(), function() {
-    return protractor.promise.delayed(300);
+    return protractor.promise.delayed(100);
   });
 
   return origFn.apply(browser.driver.controlFlow(), args);
