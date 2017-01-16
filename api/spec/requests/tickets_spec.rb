@@ -16,7 +16,8 @@ RSpec.describe "Tickets Management", type: :request do
     :ticket => {
       :assignee_id => 3,
       :ticket_type_id => 7,
-      :description => "Need to download Rubymine"
+      :description => "Need to download Rubymine",
+      :comment => "Please do quickly"
     }
   }
   

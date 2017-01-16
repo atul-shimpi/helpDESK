@@ -11,10 +11,6 @@ function RegisterController(
   
   function initialize() {
     $scope.registerForm = {};
-    $scope.registerForm.name = 'Atul Shimpi';
-    $scope.registerForm.email = 'shimpiatul2@hotmail.com';
-    $scope.registerForm.password = 'admin1234';
-    $scope.registerForm.confirm_password = 'admin1234';
   }
  
   $scope.onClickRegisterBtn = function() {

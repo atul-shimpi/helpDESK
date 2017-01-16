@@ -62,6 +62,10 @@ function NewTicketController(
     TicketsService.get({id: $state.params.id},
       function(data) {
         $scope.ticketForm = data; 
+        $scope.ticketForm.ticket_type_id = data.ticket_type.id;
+        $scope.ticketForm.assignee_id = data.assignee.id;
+        $scope.comments_history = data.comments_history;
+        $scope.ticketForm.comment = ""
         
         for (var i = 0; i < $scope.status_mst.length; i++) { 
           if ($scope.status_mst[i].status === data.status_) { 

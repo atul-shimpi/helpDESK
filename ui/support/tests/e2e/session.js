@@ -13,7 +13,87 @@ browser.driver.controlFlow().execute = function() {
 
 browser.driver.manage().window().maximize();
 
-describe('Login', function() {
+describe('Login Management', function() {
+  it('should register', function() {   
+    browser.driver;
+    
+    // navigate to base url
+    browser.driver.get(browser.baseUrl);
+    
+    // navigate to registration link
+    element(By.id("register")).click();
+    
+    // fill registration credentials
+    element(By.id("name")).sendKeys("Silvia Kollaca");
+    
+    var rnd = Math.floor((Math.random() * 100) + 1);    
+    
+    // email
+    element(By.id("email")).sendKeys("silvia" + rnd + "@hotmail.com")
+    
+    // password
+    var password = "silvia" + rnd + "@1601"
+    
+    element(By.id("password")).sendKeys(password);
+    element(By.id("password_confirmation")).sendKeys(password);
+    
+    // click register button
+    element(By.id("register")).click();
+    
+    // should on tickets list page
+    expect(browser.getCurrentUrl()).toEqual(browser.baseUrl + "tickets");
+        
+    browser.driver.sleep(2000);
+     
+    // logout
+    element(By.id("account-menu")).click();
+    element(By.id("logout")).click();
+    
+    // should be on login page
+    expect(browser.getCurrentUrl()).toEqual(browser.baseUrl);
+  });
+  
+  it('should unregister', function() {   
+    browser.driver;
+    
+    // navigate to base url
+    browser.driver.get(browser.baseUrl);
+    
+    // navigate to registration link
+    element(By.id("register")).click();
+    
+    // fill registration credentials
+    element(By.id("name")).sendKeys("Silvia Kollaca");
+    
+    var rnd = Math.floor((Math.random() * 100) + 1);    
+    
+    // email
+    element(By.id("email")).sendKeys("silvia" + rnd + "@hotmail.com")
+    
+    // password
+    var password = "silvia" + rnd + "@1601"
+    
+    element(By.id("password")).sendKeys(password);
+    element(By.id("password_confirmation")).sendKeys(password);
+    
+    // click register button
+    element(By.id("register")).click();
+    
+    // should on tickets list page
+    expect(browser.getCurrentUrl()).toEqual(browser.baseUrl + "tickets");
+        
+    browser.driver.sleep(2000);
+     
+    // logout
+    element(By.id("account-menu")).click();
+    element(By.id("unregister")).click();
+    
+    browser.switchTo().alert().accept();
+    
+    // should be on login page
+    expect(browser.getCurrentUrl()).toEqual(browser.baseUrl);
+  });
+  
   it('should login with valid credentials', function() {   
     browser.driver;
     
@@ -34,4 +114,5 @@ describe('Login', function() {
     element(By.id("logout")).click();
     expect(browser.getCurrentUrl()).toEqual(browser.baseUrl);
   });
+  
 });

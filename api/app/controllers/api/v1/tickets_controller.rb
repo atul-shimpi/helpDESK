@@ -4,14 +4,10 @@ module Api
   module V1
     class TicketsController < ApplicationController
       before_action :set_ticket, only: [:show, :update, :destroy]
+      after_action :createCommentHistory, only: [:create, :update]
 
       # GET /tickets
       def index
-        exclude_self_attrs = [:owner_id, :assignee_id, :ticket_type_id, :status]
-        include_asso_attrs = [ { :ticket_type => {:only => [:id, :type_of_ticket]} },
-                               { :owner => {:only => [:id, :name]} },
-                               { :assignee => {:only => [:id, :name]} } ]        
-       
         respond_to do |format|
           format.json { 
             render :json => find_tickets,
@@ -28,7 +24,7 @@ module Api
 
       # GET /tickets/1
       def show
-        render json: @ticket
+        render json: @ticket, :except => exclude_self_attrs, include: include_asso_attrs 
       end
 
       # POST /tickets
@@ -60,16 +56,33 @@ module Api
       end
 
       private
+        def exclude_self_attrs
+          [:owner_id, :assignee_id, :ticket_type_id, :status]
+        end
+        
+        def include_asso_attrs
+          include_asso_attrs = [ { :comments_history => {:only => [:created_at, :comment], :include => {:user => {:only => :name}} }},
+                               { :ticket_type => {:only => [:id, :type_of_ticket]} },
+                               { :owner => {:only => [:id, :name]} },
+                               { :assignee => {:only => [:id, :name]} } ] 
+        end
+        
+        def createCommentHistory  
+          return if !@ticket.comment  
+          return if @ticket.comment.empty?
+    
+          CommentsHistory.create(ticket_id: @ticket.id, user_id: current_user.id, comment: @ticket.comment)
+        end
+        
         # return tickets accoding to logged in user and filter passed
         def find_tickets
           # get all 
           tickets = Ticket.all
-        
+          
           # Get tickets created by logged in user or assigned to him if he is not admin
-          #if not current_user.admin?
-          #puts 'adminnnnnn'
-          #tickets = tickets.where("owner_id = ? or assignee_id = ?", current_user.id, current_user.id)  
-          #end
+          if not current_user.admin?
+            tickets = tickets.where("owner_id = ? or assignee_id = ?", current_user.id, current_user.id)  
+          end
           
           # if duration is given then filer by duration, example  1months
           if (params.has_key?(:duration))

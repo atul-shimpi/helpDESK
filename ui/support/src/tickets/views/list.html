@@ -70,7 +70,8 @@
 </form>
  <object ng-show="content" data="{{content}}" type="application/pdf" style="width: 100%; height: 400px;"></object>
 <!-- tickets list  -->
-<table class="table table-striped">      
+<table id="tickets" class="table table-striped">      
+  <thead>
   <tr>
      <th>Id</th>
      <th>Created On</th>
@@ -84,7 +85,7 @@
      <th style="width: 30px;"></th>
      <th style="width: 30px;"></th>
   </tr>   
-
+  </thead>
   <tr ng-repeat="ticket in tickets track by $index">
      <td>{{ticket.id}}</td> 
      <td>{{ticket.created_at | date:'dd-MMM-yyyy, H:mm'}}</td>

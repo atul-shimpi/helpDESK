@@ -83,13 +83,15 @@ Ticket.create([
     owner_id: 1,
     assignee_id: 4,
     ticket_type_id: 1,
-    description: 'Not able to access internet after windows update'
+    description: 'Not able to access internet after windows update',
+    comment: 'Please do quickly'
   },
   { 
     owner_id: 1,
     assignee_id: 2,
     ticket_type_id: 2,
-    description: 'Need to Configure Lotus Notes'
+    description: 'Need to Configure Lotus Notes',
+    comment: 'Hi, any update'
   },
   { 
     owner_id: 3,
@@ -102,7 +104,7 @@ Ticket.create([
     owner_id: 2,
     assignee_id: 2,
     ticket_type_id: 5,
-    description: 'Increase memoty',
+    description: 'Increase memory. Apps are hanging',
     status: 2
   },
   { 
@@ -113,5 +115,6 @@ Ticket.create([
   },
 ]);
 
+Ticket.where(id: 6).update(comment: 'Hi please call me')
 Ticket.where(id: 5).update(created_at: Date.today - 45.days)
 Ticket.where(id: 6).update(created_at: Date.today - 33.days)

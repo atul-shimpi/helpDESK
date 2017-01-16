@@ -103,5 +103,25 @@
       </div>
     </div>
     
+    <!-- comments history -->
+    <br>
+    <div style="height: 200px; border: 1px solid lightgrey; margin-right: auto; margin-left: auto; width: 50%;">
+    <span style="padding-left: 5px; font-weight: bold;">Comments History</span>
+    <table id="tickets" class="table table-striped">      
+      <thead>
+        <tr>
+         <th>Date</th>
+         <th>User</th>
+         <th>Comment</th>
+        </tr>   
+      </thead>
+      
+      <tr ng-repeat="comment in comments_history track by $index">
+         <td>{{comment.created_at | date:'dd-MMM-yyyy, H:mm'}}</td> 
+         <td>{{comment.user.name}}</td>          
+         <td>{{comment.comment}}</td> 
+      </tr>
+    </table>
+    </div>
   </form>
 </div>

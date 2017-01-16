@@ -64,7 +64,7 @@ app.run(['$rootScope',
   $rootScope.user = $sessionStorage.user || {};  
   
   // user clicked delete account menu
-  $rootScope.clickDeleteAcccountBtn = function() {
+  $rootScope.clickUnregisterBtn = function() {
     if (confirm("This will delete your account.")) {
       $auth.destroyAccount()
         .then(function(resp) {
