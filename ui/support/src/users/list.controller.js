@@ -13,7 +13,7 @@ function UsersListController(
   
   // delete ticket
   $scope.onClickDelete = function(id) {
-    if (confirm("Do you want to delete this ticket type " + id + "?")) {
+    if (confirm("Do you want to delete this user " + id + "?")) {
     UsersService.delete({id: id},
       function(data) {
         $scope.categories.forEach(function(item, index, object) {
@@ -28,7 +28,7 @@ function UsersListController(
     }
   };
   
-  function loadData() {
+  function loadData() {    
     UsersService.query(  
       function (data) { //got tickets types          
         

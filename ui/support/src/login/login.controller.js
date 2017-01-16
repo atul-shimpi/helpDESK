@@ -22,6 +22,7 @@ function LoginController(
       email: $scope.loginForm.email,
       password: $scope.loginForm.password
     }).then(function(res) {
+      alert(angular.toJSON(res));
     });
   };   
   

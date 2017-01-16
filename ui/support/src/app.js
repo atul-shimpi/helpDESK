@@ -27,6 +27,7 @@ app.constant("API", {
   "ASSIGNEES_URL": SERVER + VER + "/asignees",
   "TICKETS_URL": SERVER + VER + "/tickets",
   "TICKETS_STATUS_MST_URL": SERVER + VER + "/master/tickets/status",
+  "USER_ROLES_URL": SERVER + VER + "/master/user/roles",
 })
     
 app.config(statesAndRoutes);

@@ -58,10 +58,10 @@ RSpec.describe "Tickets Categories Management", type: :request do
     id = JSON.parse(response.body)["id"]
     
     ticket_type_ = {
-    :ticket_type => {
-      :type_of_ticket => "Configure VPN for latest version"
+      :ticket_type => {
+        :type_of_ticket => "Configure VPN for latest version"
+      }
     }
-  }
     
     # update
     put(api_v1_ticket_types_path + "/#{id}", :params => ticket_type_.to_json, headers: auth_headers)    

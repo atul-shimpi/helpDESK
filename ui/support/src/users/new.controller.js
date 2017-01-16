@@ -16,6 +16,33 @@ function NewUserController(
   function initialize() { 
     $scope.ticketForm = {};     
     
+    // change this
+     $scope.roles = [
+          {
+            "id": "admin",
+            "role": "Admin"
+          },
+          {
+            "id": "engineer",
+            "role": "Engineer"
+          },
+          {
+            "id": "customer",
+            "role": "Customer"
+          }
+        ];  
+
+    //load user roles
+     /*
+     UsersService.getRoles()
+     .then(
+       function (data) {       
+       }, 
+       function(error){
+         alert(error);            
+       }
+    );*/  
+    
     if (isNotEditing()) return;
     
     // get ticket type details
